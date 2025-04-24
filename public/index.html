@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bicicletas Disponibles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Bicicletas Disponibles</h1>
+
+    <ul id="bike-list">
+      <!-- Las bicicletas se mostrarán aquí -->
+    </ul>
+
+    <button id="load-bikes">Cargar Bicicletas</button>
+    
+    <h2>Agregar bicicleta</h2>
+    <form id="create-bike-form">
+      <input type="text" id="name" placeholder="Nombre" required />
+      <input type="text" id="description" placeholder="Descripción" />
+      <input type="number" id="price" step="0.01" placeholder="Precio por hora" />
+      <input type="text" id="image_url" placeholder="URL de imagen" />
+      <button type="submit">Agregar</button>
+    </form>
+
+    <h2>Lista de bicicletas</h2>
+    <ul id="bike-list"></ul>
+
+
+    <h2>Editar bicicleta</h2>
+    <form id="editBikeForm" style="display: none;">
+      <input type="hidden" id="editBikeId" />
+      <label for="editModel">Modelo:</label>
+      <input type="text" id="editModel" />
+      <label for="editType">Tipo:</label>
+      <input type="text" id="editType" />
+      <button type="submit">Guardar cambios</button>
+    </form>
+
+
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- Formulario para editar bicicletas -->
+<form id="edit-bike-form" style="display: none;">
+  <h3>Editar Bicicleta</h3>
+  <input type="hidden" id="edit-bike-id">
+  <input type="text" id="edit-bike-name" placeholder="Nombre">
+  <input type="text" id="edit-bike-price" placeholder="Precio por hora">
+  <button type="submit">Actualizar</button>
+</form>
+
+
+</body>
+</html>

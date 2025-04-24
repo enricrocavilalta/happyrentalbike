@@ -1,0 +1,8 @@
+GET http://localhost:3000/bikes
+POST http://localhost:3000/bikes
+Content-Type: application/json
+
+{
+  "model": "Bicicleta 4",
+  "type": "De carretera"
+}
