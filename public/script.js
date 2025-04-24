@@ -70,9 +70,9 @@ async function loadBikes() {
     bikeDiv.classList.add('bike');
   
     bikeDiv.innerHTML = `
-      <h3>${bike.name}</h3>
-      <p>${bike.description}</p>
-      <p><strong>${bike.price_per_hour} €/hora</strong></p>
+      <span>${bike.name}</span>
+      <span>${bike.description}</span>
+      <span>${bike.price_per_hour} €/hora<span>
       <button class="edit-btn">Editar</button>
       <button class="delete-btn">Borrar</button>
     `;
