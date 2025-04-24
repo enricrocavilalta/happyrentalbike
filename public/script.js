@@ -86,6 +86,7 @@ async function deleteBike(id) {
   } else {
     alert('Error al eliminar bicicleta');
   }
+  loadBikes();
 }
 
 
@@ -121,4 +122,8 @@ document.getElementById('update-bike-form').addEventListener('submit', async (e)
   } else {
     alert('Error al actualizar bicicleta');
   }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadBikes();
 });
