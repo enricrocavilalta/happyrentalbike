@@ -1,129 +1,124 @@
+document.addEventListener('DOMContentLoaded', () => {
+  // Obtiene los elementos del DOM
+  const loadButton = document.getElementById('load-bikes');
+  const bikeList = document.getElementById('bike-list');
+
+  // Añade el evento al botón
+  loadButton.addEventListener('click', async () => {
+      try {
+          // Realiza la solicitud GET a la API de bicicletas
+          const response = await fetch('http://localhost:3000/bikes');  // Cambia la URL si es necesario
+          const bikes = await response.json();
+
+          // Verifica que la respuesta no esté vacía
+          if (bikes.length === 0) {
+              bikeList.innerHTML = 'No hay bicicletas disponibles.';
+          } else {
+              // Limpia la lista de bicicletas antes de agregar las nuevas
+              bikeList.innerHTML = '';
+
+              // Muestra cada bicicleta en la página
+              bikes.forEach(bike => {
+                  const bikeItem = document.createElement('div');
+                  bikeItem.textContent = `${bike.name}: ${bike.description} - ${bike.price_per_hour} €/hora`;
+                  bikeList.appendChild(bikeItem);
+              });
+          }
+      } catch (error) {
+          console.error('Error al cargar las bicicletas:', error);
+          bikeList.innerHTML = 'Hubo un error al obtener las bicicletas.';
+      }
+  });
+});
+
+
+document.getElementById('create-bike-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value;
+  const description = document.getElementById('description').value;
+  const price_per_hour = document.getElementById('price').value;
+  const image_url = document.getElementById('image_url').value;
+
+  const response = await fetch('/bikes', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ name, description, price_per_hour, image_url })
+  });
+
+  if (response.ok) {
+    alert('Bicicleta agregada');
+    loadBikes(); // recarga lista
+    e.target.reset(); // limpia el formulario
+  } else {
+    alert('Error al agregar bicicleta');
+  }
+});
+
+
 async function loadBikes() {
   const response = await fetch('/bikes');
   const bikes = await response.json();
-  const bikeList = document.getElementById('bike-list');
-  bikeList.innerHTML = '';
+  const list = document.getElementById('bike-list');
+  list.innerHTML = '';
 
   bikes.forEach(bike => {
-    const bikeDiv = document.createElement('div');
-    bikeDiv.className = 'bike';
-  
-    const name = document.createElement('h3');
-    name.textContent = bike.model;
-    bikeDiv.appendChild(name);
-  
-    const description = document.createElement('p');
-    description.textContent = bike.type;
-    bikeDiv.appendChild(description);
-  
-    // Botón de borrar
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Borrar';
-    deleteBtn.onclick = () => deleteBike(bike.id);
-    bikeDiv.appendChild(deleteBtn);
-  
-    // 👉 Botón de editar
-    const editBtn = document.createElement('button');
-    editBtn.textContent = 'Editar';
-    editBtn.onclick = () => showEditForm(bike);
-    bikeDiv.appendChild(editBtn);
-  
-    container.appendChild(bikeDiv);
-  });
-
-  
-
-  // Botones de editar
-  document.querySelectorAll('.edit-button').forEach(button => {
-    button.addEventListener('click', async () => {
-      const id = button.dataset.id;
-      const res = await fetch(`/bikes/${id}`);
-      const bike = await res.json();
-
-      document.getElementById('edit-bike-id').value = bike.id;
-      document.getElementById('edit-bike-name').value = bike.name;
-      document.getElementById('edit-bike-price').value = bike.price_per_hour;
-      document.getElementById('edit-bike-form').style.display = 'block';
-    });
-  });
-
-  // Botones de borrar
-  document.querySelectorAll('.delete-button').forEach(button => {
-    button.addEventListener('click', async () => {
-      const id = button.dataset.id;
-      await fetch(`/bikes/${id}`, { method: 'DELETE' });
-      loadBikes();
-    });
+    const item = document.createElement('li');
+    item.innerHTML = `
+      <strong>${bike.name}</strong> - ${bike.description || 'Sin descripción'} - ${bike.price_per_hour}€/h
+      <br><img src="${bike.image_url}" alt="Bici" width="100" />
+      <br>
+      <button onclick="deleteBike(${bike.id})">Eliminar</button>
+      <button onclick="showUpdateForm(${bike.id}, '${bike.name}', '${bike.description}', ${bike.price_per_hour}, '${bike.image_url}')">Editar</button>
+    `;
+    list.appendChild(item);
   });
 }
 
-document.getElementById('create-bike-form').addEventListener('submit', async e => {
+
+async function deleteBike(id) {
+  if (!confirm('¿Seguro que quieres eliminar esta bici?')) return;
+  const response = await fetch(`/bikes/${id}`, { method: 'DELETE' });
+  if (response.ok) {
+    loadBikes();
+  } else {
+    alert('Error al eliminar bicicleta');
+  }
+}
+
+
+
+function showUpdateForm(id, name, description, price, image_url) {
+  document.getElementById('update-bike-form').style.display = 'block';
+  document.getElementById('edit-id').value = id;
+  document.getElementById('edit-name').value = name;
+  document.getElementById('edit-description').value = description;
+  document.getElementById('edit-price').value = price;
+  document.getElementById('edit-image_url').value = image_url;
+}
+
+document.getElementById('update-bike-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const name = document.getElementById('bike-name').value;
-  const price = parseFloat(document.getElementById('bike-price').value);
 
-  await fetch('/bikes', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, price_per_hour: price })
-  });
+  const id = document.getElementById('edit-id').value;
+  const name = document.getElementById('edit-name').value;
+  const description = document.getElementById('edit-description').value;
+  const price_per_hour = document.getElementById('edit-price').value;
+  const image_url = document.getElementById('edit-image_url').value;
 
-  e.target.reset();
-  loadBikes();
-});
-
-document.getElementById('edit-bike-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const id = document.getElementById('edit-bike-id').value;
-  const name = document.getElementById('edit-bike-name').value;
-  const price = parseFloat(document.getElementById('edit-bike-price').value);
-
-  await fetch(`/bikes/${id}`, {
+  const response = await fetch(`/bikes/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name, price_per_hour: price })
+    body: JSON.stringify({ name, description, price_per_hour, image_url })
   });
 
-  e.target.reset();
-  document.getElementById('edit-bike-form').style.display = 'none';
-  loadBikes();
-});
-
-loadBikes();
-
-
-// Mostrar el formulario con los datos actuales
-function showEditForm(bike) {
-  document.getElementById('editBikeForm').style.display = 'block';
-  document.getElementById('editBikeId').value = bike.id;
-  document.getElementById('editModel').value = bike.model;
-  document.getElementById('editType').value = bike.type;
-}
-
-// Captura del envío del formulario de edición
-document.getElementById('editBikeForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const id = document.getElementById('editBikeId').value;
-  const model = document.getElementById('editModel').value;
-  const type = document.getElementById('editType').value;
-
-  try {
-    const response = await fetch(`/bikes/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ model, type })
-    });
-
-    if (response.ok) {
-      loadBikes();
-      document.getElementById('editBikeForm').reset();
-      document.getElementById('editBikeForm').style.display = 'none';
-    } else {
-      console.error('Error al editar bicicleta');
-    }
-  } catch (error) {
-    console.error('Error:', error);
+  if (response.ok) {
+    alert('Bicicleta actualizada');
+    loadBikes();
+    document.getElementById('update-bike-form').style.display = 'none';
+  } else {
+    alert('Error al actualizar bicicleta');
   }
 });
