@@ -59,23 +59,72 @@ document.getElementById('create-bike-form').addEventListener('submit', async (e)
 
 
 async function loadBikes() {
-  const response = await fetch('/bikes');
-  const bikes = await response.json();
-  const list = document.getElementById('bike-list');
-  list.innerHTML = '';
+  const res = await fetch('/bikes');
+  const bikes = await res.json();
 
-  bikes.forEach(bike => {
-    const item = document.createElement('li');
-    item.innerHTML = `
-      <strong>${bike.name}</strong> - ${bike.description || 'Sin descripción'} - ${bike.price_per_hour}€/h
-      <br><img src="${bike.image_url}" alt="Bici" width="100" />
-      <br>
-      <button onclick="deleteBike(${bike.id})">Eliminar</button>
-      <button onclick="showUpdateForm(${bike.id}, '${bike.name}', '${bike.description}', ${bike.price_per_hour}, '${bike.image_url}')">Editar</button>
+  const container = document.getElementById('bike-list');
+  container.innerHTML = '';
+
+  bikes.forEach((bike) => {
+    const bikeDiv = document.createElement('div');
+    bikeDiv.classList.add('bike');
+  
+    bikeDiv.innerHTML = `
+      <h3>${bike.name}</h3>
+      <p>${bike.description}</p>
+      <p><strong>${bike.price_per_hour} €/hora</strong></p>
+      <button class="edit-btn">Editar</button>
+      <button class="delete-btn">Borrar</button>
     `;
-    list.appendChild(item);
+  
+    // FORMULARIO DE EDICIÓN
+    const editForm = document.createElement('form');
+    editForm.style.display = 'none';
+  
+    editForm.innerHTML = `
+      <input type="text" name="name" value="${bike.name}" required>
+      <input type="text" name="description" value="${bike.description || ''}">
+      <input type="number" name="price_per_hour" value="${bike.price_per_hour}" step="0.01" required>
+      <button type="submit">Guardar</button>
+      <button type="button" class="cancel-btn">Cancelar</button>
+    `;
+  
+    editForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const updatedBike = {
+        name: editForm.name.value,
+        description: editForm.description.value,
+        price_per_hour: parseFloat(editForm.price_per_hour.value),
+      };
+  
+      await fetch(`/bikes/${bike.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedBike),
+      });
+  
+      loadBikes();
+    });
+  
+    editForm.querySelector('.cancel-btn').addEventListener('click', () => {
+      editForm.style.display = 'none';
+    });
+  
+    bikeDiv.querySelector('.edit-btn').addEventListener('click', () => {
+      editForm.style.display = 'block';
+    });
+  
+    bikeDiv.querySelector('.delete-btn').addEventListener('click', async () => {
+      await fetch(`/bikes/${bike.id}`, { method: 'DELETE' });
+      loadBikes();
+    });
+  
+    container.appendChild(editForm); // primero el form
+    container.appendChild(bikeDiv);  // luego el div de la bici
   });
+  
 }
+
 
 
 async function deleteBike(id) {
