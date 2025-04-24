@@ -3,36 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bicicletas Disponibles</title>
+    <title>happyrentalbike</title>
 </head>
 <body>
+  <div id="crud-container">
     <h1>Bicicletas Disponibles</h1>
-    <!--<button id="load-bikes">Cargar bicicletas</button>-->
     <div id="bike-list"></div>
 
-
     <h2>Agregar bicicleta</h2>
-<form id="create-bike-form">
-  <input type="text" id="name" placeholder="Nombre" required />
-  <input type="text" id="description" placeholder="Descripción" />
-  <input type="number" id="price" step="0.01" placeholder="Precio por hora" />
-  <input type="text" id="image_url" placeholder="URL de imagen" />
-  <button type="submit">Agregar</button>
-</form>
+    <form id="create-bike-form">
+      <input type="text" id="name" placeholder="Nombre" required />
+      <input type="text" id="description" placeholder="Descripción" />
+      <input type="number" id="price" step="0.01" placeholder="Precio por hora" />
+      <input type="text" id="image_url" placeholder="URL de imagen" />
+      <button type="submit">Agregar</button>
+    </form>
 
+    <form id="update-bike-form" style="display:none;">
+      <input type="hidden" id="edit-id" />
+      <input type="text" id="edit-name" placeholder="Nombre" required />
+      <input type="text" id="edit-description" placeholder="Descripción" />
+      <input type="number" id="edit-price" step="0.01" placeholder="Precio por hora" />
+      <input type="text" id="edit-image_url" placeholder="URL de imagen" />
+      <button type="submit">Guardar cambios</button>
+    </form>
 
-<form id="update-bike-form" style="display:none;">
-  <input type="hidden" id="edit-id" />
-  <input type="text" id="edit-name" placeholder="Nombre" required />
-  <input type="text" id="edit-description" placeholder="Descripción" />
-  <input type="number" id="edit-price" step="0.01" placeholder="Precio por hora" />
-  <input type="text" id="edit-image_url" placeholder="URL de imagen" />
-  <button type="submit">Guardar cambios</button>
-</form>
-
-<ul id="bike-list"></ul>
-
-
+    <ul id="bike-list"></ul>
     <script src="script.js"></script>
+  </div>
 </body>
 </html>

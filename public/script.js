@@ -176,3 +176,17 @@ document.getElementById('update-bike-form').addEventListener('submit', async (e)
 document.addEventListener('DOMContentLoaded', () => {
   loadBikes();
 });
+
+const isAdmin = true; // Cambia a false si no eres admin
+
+function toggleCrudVisibility() {
+  const crudContainer = document.getElementById('crud-container');
+  if (isAdmin) {
+    crudContainer.style.display = 'block';
+  } else {
+    crudContainer.style.display = 'none';
+  }
+}
+
+// Llamamos a la función para ajustar la visibilidad al cargar la página
+toggleCrudVisibility();
