@@ -50,6 +50,7 @@ document.getElementById('create-bike-form').addEventListener('submit', async (e)
 
   if (response.ok) {
     alert('Bicicleta agregada');
+    loadPublicBikes();
     loadBikes(); // recarga lista
     e.target.reset(); // limpia el formulario
   } else {
@@ -102,7 +103,7 @@ async function loadBikes() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedBike),
       });
-  
+      loadPublicBikes();
       loadBikes();
     });
   
@@ -135,6 +136,7 @@ async function deleteBike(id) {
   } else {
     alert('Error al eliminar bicicleta');
   }
+  loadPublicBikes();
   loadBikes();
 }
 
@@ -166,6 +168,7 @@ document.getElementById('update-bike-form').addEventListener('submit', async (e)
 
   if (response.ok) {
     alert('Bicicleta actualizada');
+    loadPublicBikes();
     loadBikes();
     document.getElementById('update-bike-form').style.display = 'none';
   } else {
@@ -174,6 +177,7 @@ document.getElementById('update-bike-form').addEventListener('submit', async (e)
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  loadPublicBikes();
   loadBikes();
 });
 
@@ -190,3 +194,28 @@ function toggleCrudVisibility() {
 
 // Llamamos a la función para ajustar la visibilidad al cargar la página
 toggleCrudVisibility();
+
+async function loadPublicBikes() {
+  const res = await fetch('/bikes');
+  const bikes = await res.json();
+
+  const container = document.getElementById('user-bike-grid');
+  container.innerHTML = '';
+
+  bikes.forEach(bike => {
+    const card = document.createElement('div');
+    card.classList.add('bike-card');
+
+    card.innerHTML = `
+    <img src="${bike.image_url}" alt="${bike.name}" style="width: 100%; height: auto;">
+      <h3>${bike.name}</h3>
+      <p>${bike.description}</p>
+      <p><strong>${bike.price_per_hour} €/hora</strong></p>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+
+
