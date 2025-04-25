@@ -117,6 +117,7 @@ async function loadBikes() {
   
     bikeDiv.querySelector('.delete-btn').addEventListener('click', async () => {
       await fetch(`/bikes/${bike.id}`, { method: 'DELETE' });
+      loadPublicBikes();
       loadBikes();
     });
   
@@ -132,6 +133,7 @@ async function deleteBike(id) {
   if (!confirm('¿Seguro que quieres eliminar esta bici?')) return;
   const response = await fetch(`/bikes/${id}`, { method: 'DELETE' });
   if (response.ok) {
+    loadPublicBikes();
     loadBikes();
   } else {
     alert('Error al eliminar bicicleta');
@@ -207,10 +209,12 @@ async function loadPublicBikes() {
     card.classList.add('bike-card');
 
     card.innerHTML = `
-    <img src="${bike.image_url}" alt="${bike.name}" style="width: 100%; height: auto;">
+    <img src="${bike.image_url}" alt="Image" style="width: 100%; height: auto;">
+    <div class="bike-footer">
       <h3>${bike.name}</h3>
-      <p>${bike.description}</p>
       <p><strong>${bike.price_per_hour} €/hora</strong></p>
+    </div>
+    <p>${bike.description}</p>
     `;
 
     container.appendChild(card);

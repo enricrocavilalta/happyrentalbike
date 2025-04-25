@@ -63,7 +63,7 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.2s ease;
   }
-  
+  /* #5cb245 92 178 69*/
   .bike-card:hover {
     transform: scale(1.03);
   }
@@ -78,6 +78,12 @@ body {
   }
   img{
     border-radius: 10px;
+    border: 1px solid #fff;
   }
   
-  
+  .bike-footer {
+    display: flex;
+    justify-content: space-between; /* Esto pone el nombre a la izquierda y el precio a la derecha */
+    align-items: center;
+    margin-top: 10px;
+  }
