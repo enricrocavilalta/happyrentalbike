@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
   loadBikes();
 });
 
-const isAdmin = true; // Cambia a false si no eres admin
+const isAdmin = false; // Cambia a false si no eres admin
 
 function toggleCrudVisibility() {
   const crudContainer = document.getElementById('crud-container');
