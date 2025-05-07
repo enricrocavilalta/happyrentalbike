@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // Muestra cada bicicleta en la página
               bikes.forEach(bike => {
                   const bikeItem = document.createElement('div');
-                  bikeItem.textContent = `${bike.name}: ${bike.description} - ${bike.price_per_hour} €/hora`;
+                  bikeItem.textContent = `${bike.name}: ${bike.description} - ${bike.price_per_hour} €`;
                   bikeList.appendChild(bikeItem);
               });
           }
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Muestra cada bicicleta en la página
             tours.forEach(tour => {
                 const tourItem = document.createElement('div');
-                tourItem.textContent = `${tour.name}: ${tour.description} - ${tour.price_per_hour} €/hora`;
+                tourItem.textContent = `${tour.name}: ${tour.description} - ${tour.price_per_hour} €`;
                 tourList.appendChild(tourItem);
             });
         }
@@ -74,7 +74,12 @@ document.getElementById('create-bike-form').addEventListener('submit', async (e)
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ name, description, price_per_hour, image_url })
+    body: JSON.stringify({
+      name: name,
+      description: description,
+      price_per_hour: price_per_hour,
+      image_url: image_url
+    })
   });
 
   if (response.ok) {
@@ -92,24 +97,21 @@ document.getElementById('create-bike-form').addEventListener('submit', async (e)
 document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('create-tour-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  console.log("pulsado");
   const name_tour = document.getElementById('name-tour').value;
   const description_tour = document.getElementById('description-tour').value;
   const price_tour = document.getElementById('price-tour').value;
   const image_url_tour = document.getElementById('image_url-tour').value;
-  console.log({ name_tour, description_tour, price_tour, image_url_tour });
   
   const response = await fetch('/tours', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    //body: JSON.stringify({ name_tour, description_tour, price_tour, image_url_tour })
     body: JSON.stringify({
       name: name_tour,
       description: description_tour,
       price_per_hour: price_tour,
-      image_url: image_url_tour,
+      image_url: image_url_tour
     })
   });
 
@@ -139,7 +141,7 @@ async function loadBikes() {
     bikeDiv.innerHTML = `
       <span>${bike.name}</span>
       <span>${bike.description}</span>
-      <span>${bike.price_per_hour} €/hora<span>
+      <span>${bike.price_per_hour} €<span>
       <button class="edit-btn">Editar</button>
       <button class="delete-btn">Borrar</button>
     `;
@@ -151,7 +153,8 @@ async function loadBikes() {
     editForm.innerHTML = `
       <input type="text" name="name" value="${bike.name}" required>
       <input type="text" name="description" value="${bike.description || ''}">
-      <input type="number" name="price_per_hour" value="${bike.price_per_hour}" step="0.01" required>
+      <input type="number" name="price_per_hour" value="${bike.price_per_hour}" required>
+      <input type="text" name="image_url" value="${bike.image_url}">
       <button type="submit">Guardar</button>
       <button type="button" class="cancel-btn">Cancelar</button>
     `;
@@ -162,6 +165,7 @@ async function loadBikes() {
         name: editForm.name.value,
         description: editForm.description.value,
         price_per_hour: parseFloat(editForm.price_per_hour.value),
+        image_url: editForm.image_url.value
       };
   
       await fetch(`/bikes/${bike.id}`, {
@@ -209,7 +213,7 @@ async function loadTours() {
     tourDiv.innerHTML = `
       <span>${tour.name}</span>
       <span>${tour.description}</span>
-      <span>${tour.price_per_hour} €/hora</span>
+      <span>${tour.price_per_hour} €</span>
       <button class="edit-btn">Editar</button>
       <button class="delete-btn">Borrar</button>
     `;
@@ -221,7 +225,8 @@ async function loadTours() {
     editForm.innerHTML = `
       <input type="text" name="name-tour" value="${tour.name}" required>
       <input type="text" name="description-tour" value="${tour.description || ''}">
-      <input type="number" name="price_per_hour-tour" value="${tour.price_per_hour}" step="0.01" required>
+      <input type="text" name="price_per_hour-tour" value="${tour.price_per_hour}">
+      <input type="text" name="image_url-tour" value="${tour.image_url_tour}">
       <button type="submit">Guardar</button>
       <button type="button" class="cancel-btn">Cancelar</button>
     `;
@@ -233,6 +238,7 @@ async function loadTours() {
         name: editForm['name-tour'].value,
         description: editForm['description-tour'].value,
         price_per_hour: parseFloat(editForm['price_per_hour-tour'].value),
+        image_url:  editForm['image_url-tour'].value
       };
   
       const response = await fetch(`/tours/${tour.id}`, {
@@ -285,7 +291,7 @@ function createTourForm() {
   form.innerHTML = `
     <input type="text" name="name-tour" placeholder="Nombre del tour" required>
     <input type="text" name="description-tour" placeholder="Descripción del tour">
-    <input type="number" name="price-tour" placeholder="Precio por hora" step="0.01" required>
+    <input type="number" name="price-tour" placeholder="Precio por hora" required>
     <button type="submit">Crear Tour</button>
   `;
 
@@ -296,7 +302,8 @@ function createTourForm() {
     const newTour = {
       name: form['name-tour'].value,
       description: form['description-tour'].value,
-      price_tour: parseFloat(form['price-tour'].value),
+      price_per_hour: parseFloat(form['price-tour'].value),
+      image_url: form['image_url-tour'].value
     };
 
     console.log('Creando tour:', newTour); // Depuración: Ver el objeto a enviar
@@ -309,7 +316,6 @@ function createTourForm() {
 
     // Depuración: Revisar la respuesta
     const data = await response.json();
-    console.log('Respuesta de la creación:', data);
 
     if (response.ok) {
       alert('Tour creado');
@@ -423,7 +429,7 @@ document.getElementById('update-tour-form').addEventListener('submit', async (e)
   const response = await fetch(`/tours/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name_tour, description, price_per_hour, image_url })
+    body: JSON.stringify({ id_tour,name_tour, description_tour, price_per_hour_tour, image_url_tour })
   });
 
   if (response.ok) {
@@ -473,11 +479,13 @@ async function loadPublicBikes() {
     const card = document.createElement('div');
     card.classList.add('bike-card');
 
+    console.log(bike.image_url);
+
     card.innerHTML = `
     <img src="${bike.image_url}" alt="Image" style="width: 100%; height: auto;">
     <div class="bike-footer">
       <h3>${bike.name}</h3>
-      <p><strong>${bike.price_per_hour} €/hora</strong></p>
+      <p><strong>${bike.price_per_hour} €</strong></p>
     </div>
     <p>${bike.description}</p>
     `;
@@ -498,11 +506,13 @@ async function loadPublicTours() {
     const card = document.createElement('div');
     card.classList.add('tour-card');
 
+    console.log("url: " + tour.image_url)
+
     card.innerHTML = `
     <img src="${tour.image_url}" alt="Image" style="width: 100%; height: auto;">
     <div class="tour-footer">
       <h3>${tour.name}</h3>
-      <p><strong>${bike.price_per_hour} €/hora</strong></p>
+      <p><strong>${tour.price_per_hour} €</strong></p>
     </div>
     <p>${tour.description}</p>
     `;
