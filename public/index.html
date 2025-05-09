@@ -1,68 +1,142 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>happyrentalbike</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Adjust the path to your CSS file -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bike Rental in Barcelona</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div>
-  <div>
-    <div id="user-bike-grid" class="bike-grid"></div>
-    <div id="crud-container">
-      <h1>Bicicletas Disponibles</h1>
-      <div id="bike-list"></div>
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav">
+          <nav>
+            <ul class="menu">
+              <li><a href="#">Rental</a>
+                <ul class="submenu">
+                  <li><a href="#">Urban Bike</a></li>
+                  <li><a href="#">Tandem Bike</a></li>
+                  <li><a href="#">Kids Bike</a></li>
+                  <li><a href="#">Ecargo Bike</a></li>
+                  <li><a href="#">Electric Bike</a></li>
+                  <li><a href="#">Electric Scooters</a></li>
+                  <li><a href="#">baby Bike Seat</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Tours</a>
+                <ul class="submenu">
+                  <li><a href="#">Tour Overview</a></li>
+                  <li><a href="#">Happy City Tour</a></li>
+                  <li><a href="#">Happy Tour Gaudi & Modernista</a></li>
+                  <li><a href="#">Happy Beach Tours</a></li>
+                  <li><a href="#">Costum Private Tours</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Shop</a>
+                <ul class="submenu">
+                  <li><a href="#">New eCargo & Cargo Bikes</a></li>
+                  <li><a href="#">Bikeshop</a></li>
+                  <li><a href="#">Workshop</a></li>
+                </ul>
+              </li>
+              <li><a href="#">About us</a>
+                <ul class="submenu">
+                  <li><a href="#">Partners</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">(+34) 933 28 58 34</a></li>
+              <li><a href="#">My Account</a></li>
+            </ul>
+          </nav>
+        </nav>
+      </div>
+    </header>
 
-      <h2>Agregar bicicleta</h2>
-      <form id="create-bike-form">
-        <input type="text" id="name" placeholder="Nombre" required />
-        <input type="text" id="description" placeholder="Descripción" />
-        <input type="number" id="price" step="0.01" placeholder="Precio por hora" />
-        <input type="text" id="image_url" placeholder="URL de imagen" />
-        <button type="submit">Agregar</button>
-      </form>
+    <main>
+      <div>
+        <h3 style="text-align:center; color:#5cb245;">Bike Rental in Barcelona</h3>
+        <div id="user-bike-grid" class="bike-grid"></div>
+        <div id="crud-container">
+          <h1>Bicicletas Disponibles</h1>
+          <div id="bike-list"></div>
 
-      <form id="update-bike-form" style="display:none;">
-       <input type="hidden" id="edit-id" />
-       <input type="text" id="edit-name" placeholder="Nombre" required />
-       <input type="text" id="edit-description" placeholder="Descripción" />
-       <input type="number" id="edit-price" step="0.01" placeholder="Precio por hora" />
-       <input type="text" id="edit-image_url" placeholder="URL de imagen" />
-       <button type="submit">Guardar cambios</button>
-      </form>
+          <h2>Agregar bicicleta</h2>
+          <form id="create-bike-form">
+            <input type="text" id="name" placeholder="Nombre" required />
+            <input type="text" id="description" placeholder="Descripción" />
+            <input type="text" id="price" placeholder="Precio por hora" />
+            <input type="text" id="image_url" placeholder="URL de imagen" />
+            <button type="submit">Agregar</button>
+          </form>
 
-      <ul id="bike-list"></ul>
-      <script src="script.js"></script>
-    </div>
+          <form id="update-bike-form" style="display:none;">
+            <input type="hidden" id="edit-id" />
+            <input type="text" id="edit-name" placeholder="Nombre" required />
+            <input type="text" id="edit-description" placeholder="Descripción" />
+            <input type="text" id="edit-price" placeholder="Precio por hora" />
+            <input type="text" id="edit-image_url" placeholder="URL de imagen" />
+            <button type="submit">Guardar cambios</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- tours -->
+      <div>
+        <h3 style="text-align:center; color:#5cb245;">Barcelona Private Bike Tours</h3>
+        <div id="user-tour-grid" class="tour-grid">tour grid</div>
+        <div id="crud-container-tour">
+          <h1>Tours Disponibles</h1>
+          <div id="tour-list">tour1</div>
+
+          <h2>Agregar tour</h2>
+          <form id="create-tour-form">
+            <input type="text" id="name-tour" placeholder="Nombre" required />
+            <input type="text" id="description-tour" placeholder="Descripción" />
+            <input type="text" id="price-tour" placeholder="Precio" />
+            <input type="text" id="image_url-tour" placeholder="URL de imagen" />
+            <button type="submit">Agregar</button>
+          </form>
+
+          <form id="update-tour-form" style="display:none;">
+            <input type="hidden" id="edit-id-tour" />
+            <input type="text" id="edit-name-tour" placeholder="Nombre" required />
+            <input type="text" id="edit-description-tour" placeholder="Descripción" />
+            <input type="text" id="edit-price-tour" placeholder="Precio por hora" />
+            <input type="text" id="edit-image_url-tour" placeholder="URL de imagen" />
+            <button type="submit">Guardar cambios</button>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <div class="footer-column">
+          <h4>Happy Rental Bike Shop</h4>
+            Calle Roger de Flor, 5
+            08018 Barcelona
+            T. (+34) 933 28 58 34 
+            <a href="#">Email us</a>
+        </div>
+        <div class="footer-column">
+          <h4>Opening hours</h4>
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Bikes</a></li>
+            <li><a href="#">Tours</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <p>Email: info@example.com</p>
+          <p>Phone: +123 456 789</p>
+        </div>
+      </div>
+    </footer>
+    
   </div>
-  <!--tours-->
-  <div>
-    <div id="user-tour-grid" class="tour-grid">tour grid</div>
-    <div id="crud-container-tour">
-      <h1>Tours Disponibles</h1>
-      <div id="tour-list">tour1</div>
 
-      <h2>Agregar tour</h2>
-      <form id="create-tour-form">
-        <input type="text" id="name-tour" placeholder="Nombre" required />
-        <input type="text" id="description-tour" placeholder="Descripción" />
-        <input type="text" id="price-tour" placeholder="Precio" />
-        <input type="text" id="image_url-tour" placeholder="URL de imagen" />
-        <button type="submit">Agregar</button>
-      </form>
-
-      <form id="update-tour-form" style="display:none;">
-       <input type="hidden" id="edit-id-tour" />
-       <input type="text" id="edit-name-tour" placeholder="Nombre" required />
-       <input type="text" id="edit-description-tour" placeholder="Descripción" />
-       <input type="number" id="edit-price-tour" placeholder="Precio por hora" />
-       <input type="text" id="edit-image_url-tour" placeholder="URL de imagen" />
-       <button type="submit">Guardar cambios</button>
-      </form>
-     
-    </div>
-  </div>
-</div>
+  <script src="script.js"></script>
 </body>
 </html>

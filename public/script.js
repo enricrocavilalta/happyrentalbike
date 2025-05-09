@@ -451,9 +451,9 @@ document.addEventListener('DOMContentLoaded', () => {
   loadBikes();
   loadPublicTours();
   loadTours();
-});
 
-const isAdmin = true; // Cambia a false si no eres admin
+
+const isAdmin = false; // Cambia a false si no eres admin
 
 function toggleCrudVisibility() {
   const crudContainer = document.getElementById('crud-container');
@@ -462,11 +462,20 @@ function toggleCrudVisibility() {
   } else {
     crudContainer.style.display = 'none';
   }
+  
+  const crudContainerTour = document.getElementById('crud-container-tour');
+  if (isAdmin) {
+    crudContainerTour.style.display = 'block';
+  } else {
+    crudContainerTour.style.display = 'none';
+  }
+    
 }
+
 
 // Llamamos a la función para ajustar la visibilidad al cargar la página
 toggleCrudVisibility();
-
+});
 
 async function loadPublicBikes() {
   const res = await fetch('/bikes');
@@ -506,12 +515,10 @@ async function loadPublicTours() {
     const card = document.createElement('div');
     card.classList.add('tour-card');
 
-    console.log("url: " + tour.image_url)
-
     card.innerHTML = `
     <img src="${tour.image_url}" alt="Image" style="width: 100%; height: auto;">
     <div class="tour-footer">
-      <h3>${tour.name}</h3>
+      <h3>${tour.name}</h3><br>
       <p><strong>${tour.price_per_hour} €</strong></p>
     </div>
     <p>${tour.description}</p>

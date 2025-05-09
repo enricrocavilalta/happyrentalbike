@@ -25,8 +25,21 @@ body {
     list-style-type: none;
     padding: 0;
   }
+
+  #tour-list {
+    list-style-type: none;
+    padding: 0;
+  }
   
   .bike-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+  }
+
+  .tour-item {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 10px;
@@ -54,8 +67,15 @@ body {
     padding: 20px;
   }
   
+  .tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
   .bike-card {
-    background: #101010;
+    background: #202020;
     border: none;
     border-radius: 10px;
     padding: 15px;
@@ -63,8 +83,23 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.2s ease;
   }
+
+  .tour-card {
+    background: #202020;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+  }
+
   /* #5cb245 92 178 69*/
   .bike-card:hover {
+    transform: scale(1.03);
+  }
+
+  .tour-card:hover {
     transform: scale(1.03);
   }
   
@@ -72,17 +107,200 @@ body {
     margin: 0;
     font-size: 1.2em;
   }
+
+  .tour-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+  }
   
   .bike-card p {
     margin: 10px 0;
   }
+
+  .tour-card p {
+    margin: 10px 0;
+  }
+
   img{
     border-radius: 10px;
   }
   
   .bike-footer {
-    display: flex;
-    justify-content: space-between; /* Esto pone el nombre a la izquierda y el precio a la derecha */
+    /*display: flex;
+    justify-content: space-between;  Esto pone el nombre a la izquierda y el precio a la derecha */
     align-items: center;
     margin-top: 10px;
   }
+
+  .tour-footer {
+    /*display: flex;*/
+    /*justify-content: space-between;  Esto pone el nombre a la izquierda y el precio a la derecha */
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  .site-header {
+    background: #101010;
+    color:white;
+    border-bottom: 1px solid #ccc;
+    padding: 1rem 0;
+    border-radius: 10px;
+  }
+  
+  .header-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* important for small screens */
+
+    background-color:black;
+    color:white;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .nav {
+    color:#5cb245 !important;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav a:link {
+    text-decoration: none;
+    color:#5cb245;
+  }
+  .nav a:hover {
+    color: #FFFF80;
+  }
+
+  .container {
+    background: #101010;
+    color:white;
+  }
+
+  header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border: none !important;
+  }
+  main {
+    background:#101010;
+    color:white;
+    margin-top: 0;
+    padding-top: 0;
+    border-radius: 10px;
+  }
+
+  .site-footer{
+    background:#101010;
+    border-radius: 10px;
+  }
+
+  h3{
+    margin-top: 40px;
+    padding-top: 40px;
+  }
+
+  .menu {
+    display: flex;
+    list-style: none;
+    background-color: #202020;
+    color:#5cb245 !important;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    position: relative;
+  }
+  
+  .menu > li > a {
+    display: block;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .submenu {
+    display: none; /* start hidden */
+    position: absolute;
+    top: 100%; /* directly below the parent */
+    left: 0;
+    background-color: #303030;
+    color:#5cb245 !important;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .submenu li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .menu li:hover .submenu {
+    display: block; /* show on hover */
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;  /* Centers the items horizontally */
+    color:red !important;
+  }
+  
+  .menu {
+    list-style: none;
+    display: flex;  /* Aligns the items in a row */
+    gap: 1rem;      /* Adds space between the items */
+    padding: 0;
+    margin: 0;
+  }
+
+  .site-footer {
+    background-color: #101010;
+    color: white;
+    padding: 40px 20px;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-column {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .footer-column h4 {
+    margin-bottom: 10px;
+    color: #5cb245;
+  }
+  
+  .footer-column a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-column a:hover {
+    text-decoration: underline;
+  }
+  
+  
+  
+  
