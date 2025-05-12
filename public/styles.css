@@ -182,6 +182,13 @@ body {
     color: #FFFF80;
   }
 
+  a{
+    color:#5cb245;
+  }
+  a:hover {
+    color: #FFFF80 !important;
+  }
+
   .container {
     background: #101010;
     color:white;
@@ -256,7 +263,6 @@ body {
   nav {
     display: flex;
     justify-content: center;  /* Centers the items horizontally */
-    color:red !important;
   }
   
   .menu {
@@ -300,7 +306,31 @@ body {
   .footer-column a:hover {
     text-decoration: underline;
   }
+
+  a:hover .icon {
+    fill: #808080 !important;
+  }
+
+  a:hover {
+    fill: #808080 !important;
+  }
   
+  a:hover img {
+    filter: grayscale(0%);
+  }
+
+  div{
+    margin-top:15px;
+    margin-bottom:15px;
+  }
+
+.flex-container {
+  display: flex;
+}
+.flex-child {
+  flex: 1;
+}  
+
   
   
   

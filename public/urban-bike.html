@@ -15,8 +15,8 @@
             <ul class="menu">
               <li><a href="#">Rental</a>
                 <ul class="submenu">
-                  <li><a href="/urban-bike.html">Urban Bike</a></li>
-                  <li><a href="/tandem-bike.html">Tandem Bike</a></li>
+                  <li><a href="#">Urban Bike</a></li>
+                  <li><a href="#">Tandem Bike</a></li>
                   <li><a href="#">Kids Bike</a></li>
                   <li><a href="#">Ecargo Bike</a></li>
                   <li><a href="#">Electric Bike</a></li>
@@ -55,59 +55,69 @@
     </header>
 
     <main>
-      <div>
-        <h3 style="text-align:center; color:#5cb245;">Bike Rental in Barcelona</h3>
-        <div id="user-bike-grid" class="bike-grid"></div>
-        <div id="crud-container">
-          <h1>Bicicletas Disponibles</h1>
-          <div id="bike-list"></div>
-
-          <h2>Agregar bicicleta</h2>
-          <form id="create-bike-form">
-            <input type="text" id="name" placeholder="Nombre" required />
-            <input type="text" id="description" placeholder="Descripción" />
-            <input type="text" id="price" placeholder="Precio por hora" />
-            <input type="text" id="image_url" placeholder="URL de imagen" />
-            <button type="submit">Agregar</button>
-          </form>
-
-          <form id="update-bike-form" style="display:none;">
-            <input type="hidden" id="edit-id" />
-            <input type="text" id="edit-name" placeholder="Nombre" required />
-            <input type="text" id="edit-description" placeholder="Descripción" />
-            <input type="text" id="edit-price" placeholder="Precio por hora" />
-            <input type="text" id="edit-image_url" placeholder="URL de imagen" />
-            <button type="submit">Guardar cambios</button>
-          </form>
+      <div class="flex-container">
+        <div class="flex-child">
+          <img src="urban-bike1.webp" alt="bike1"><br>
+          <img src="urban-bike2.webp" alt="bike2"><br>
+          <img src="urban-bike3.webp" alt="bike3"><br>
+          <img src="urban-bike4.webp" alt="bike4"><br>
+          <img src="urban-bike5.webp" alt="bike5">
         </div>
-      </div>
+        
+        <div class="flex-child">
+          <h1 style="color: #5cb245;">Urban Bike</h1><br><br>
 
-      <!-- tours -->
-      <div>
-        <h3 style="text-align:center; color:#5cb245;">Barcelona Private Bike Tours</h3>
-        <div id="user-tour-grid" class="tour-grid">tour grid</div>
-        <div id="crud-container-tour">
-          <h1>Tours Disponibles</h1>
-          <div id="tour-list">tour1</div>
+          <b>From 8 € 2 hours</b><br><br>
 
-          <h2>Agregar tour</h2>
-          <form id="create-tour-form">
-            <input type="text" id="name-tour" placeholder="Nombre" required />
-            <input type="text" id="description-tour" placeholder="Descripción" />
-            <input type="text" id="price-tour" placeholder="Precio" />
-            <input type="text" id="image_url-tour" placeholder="URL de imagen" />
-            <button type="submit">Agregar</button>
-          </form>
+          <b>Bike description:</b> from 3 to 6 gears, comfortable seat, front basket, lights (Dutch & Belgium’s style). Choose your bike. Don’t forget we offer you various size (small 50, medium 55 and higher 60) and colours (black or yellow).
+          <b>Includes:</b> chain lock, helmets and Barcelona guide map.<br><br>
 
-          <form id="update-tour-form" style="display:none;">
-            <input type="hidden" id="edit-id-tour" />
-            <input type="text" id="edit-name-tour" placeholder="Nombre" required />
-            <input type="text" id="edit-description-tour" placeholder="Descripción" />
-            <input type="text" id="edit-price-tour" placeholder="Precio por hora" />
-            <input type="text" id="edit-image_url-tour" placeholder="URL de imagen" />
-            <button type="submit">Guardar cambios</button>
-          </form>
-        </div>
+          <b>Requirements:</b><br><br>
+
+          <ul>
+          <li>ID or driver’s license (copy retained)</li><br>
+          <li>Minimum deposit 50€ per bike (credit card or cash) better in cash to avoid bank refunding delay.</li><br>
+          <li>General terms and conditions signed</li><br>
+          </ul>
+          <h4 style="color: #5cb245;">Choose your duration time</h4>
+          <select name="urban-bike-duration" id="urban-bike-duration">
+          <option value="" disabled selected>Choose your option</option>
+          <option value="2hours">2 hours - 8€</option>
+          <option value="4hours">4 hours - 12€</option>
+          <option value="8hours">8 hours - 15€</option>
+          <option value="24hours">24 hours - 18€</option>
+          <option value="2days">2 days - 30€</option>
+          <option value="3days">3 days - 40€</option>
+          <option value="4days">4 days - 50€</option>
+          <option value="5days">5 days - 60€</option>
+          </select><br><br>
+          <b>Choose your check-in time *</b><br><br>
+
+          Select the best time for you to pick up your bike <br>
+
+          <select name="urban-bike-time" id="urban-bike-time">
+          <option value="" disabled selected>Choose your option...</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+          </select><br><br>
+          Choose our Shop * <br>
+
+          Select the shop you want pick up the bikes and start your ride! <br>
+          <input type="radio" name="Shop1">Shop 1 | Happy Rental Bike : Calle Roger de Flor, 5. Tel: (+34) 933 28 58 34<br>
+
+          <select name="urban-bike-qty" id="urban-bike-qty">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          </select>
+          <button>Add to cart</button>
+        </div> 
       </div>
     </main>
 
