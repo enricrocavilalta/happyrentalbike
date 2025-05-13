@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bike Rental in Barcelona</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div>
+    <%- include('partials/header') %>
+
+    <main>
+      <div class="flex-container">
+        <div class="bike-images">
+          <img src="tandem1.webp" alt="bike1"><br>
+          <img src="tandem2.webp" alt="bike2"><br>
+          <img src="tandem3.webp" alt="bike3"><br>
+          <img src="tandem4.webp" alt="bike4"><br>
+        </div>
+        
+        <div class="flex-child">
+          <h1 style="color: #5cb245;">Tandem Bike Rental</h1><br><br>
+
+          <b>From 16€ 2 hours</b>
+
+          <b>Bike description:</b> Tandem bikes for adults or adult/kid. 4 speeds and comfortable seats. Enjoy!
+          <b>Includes:</b> chain lock, helmets and Barcelona guide map.
+
+          <b>Requirements:</b>
+
+          ID or driver’s license (copy retained)
+          Minimum deposit 150€ per tandem by credit card or cash. Better in cash to avoid bank delay refunding.
+          General terms and conditions signed
+
+          <b>Pick-up only at:</b>
+          Shop 1 | Happy Rental Bike: <b>Calle Roger de Flor, 5</b>. Tel: (+34) 933 28 58 34<br><br>
+          <h3 style="color: #5cb245;">Choose your Tandem Bike:</h3>
+          <select name="urban-bike-duration" id="urban-bike-duration">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="kid-adult">Tandem Kid + Adult</option>
+            <option value="2adults">2 Adults</option>
+          </select><br><br>
+          
+          <h3 style="color: #5cb245;">Choose your duration time:</h3>
+          
+          <select name="urban-bike-duration" id="urban-bike-duration">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="2hours">2 hours - 16€</option>
+            <option value="4hours">4 hours - 24€</option>
+            <option value="8hours">8 hours - 35€</option>
+            <option value="24hours">24 hours - 50€</option>
+            <option value="2days">2 days - 90€</option>
+            <option value="3days">3 days - 126€</option>
+          </select><br><br>
+
+          <b>Choose your check-in time</b>
+          Select the best time for you to pick up your <br>
+
+          <select name="urban-bike-time" id="urban-bike-time">
+            <option value="" disabled selected>Choose your option...</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            </select><br><br>
+            <h3 style="color: #5cb245;"></h3>Choose our Shop</h3><br>
+            Select the shop you want pick up the bikes and start your ride! <br>
+            <input type="radio" name="Shop1">Shop 1 | Happy Rental Bike : Calle Roger de Flor, 5. Tel: (+34) 933 28 58 34<br>
+            
+            <select name="urban-bike-qty" id="urban-bike-qty">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            
+            <button>Add to cart</button>
+        </div> 
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
