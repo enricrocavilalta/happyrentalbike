@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Bike Rental</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div>
+    <%- include('partials/header') %>
+
+    <main>
+      <div class="flex-container">
+        <div class="bike-images">
+          <img src="baby-seats1.webp" alt="scooter1"><br>
+          <img src="baby-seats2.webp" alt="scooter2"><br>
+          <img src="baby-seats3.webp" alt="scooter3"><br>
+          <img src="baby-seats4.webp" alt="scooter4"><br>
+        </div>
+        
+        <div class="flex-child">
+          <h1 style="color: #5cb245;">Bikes with Baby Seats</h1><br><br>
+
+          <b>From 10€ 2 hours</b><br>
+          <h3 style="color: #5cb245;">3 types of children seats with Bikes. (Dutch & Belgium’s style)</h3>
+          <ul>
+            <li>Front MINI : 9 months to 3 years. Max. 15 kilos</li>
+            <li>Rear MAXI : 9 months to 6 years. Max 22 kilos</li>
+          </ul>
+          <br>
+
+          <h3 style="color: #5cb245;">Choose exactly what you need for your child !</h3><br>
+
+          Comfort, safety and a good position from where they can fully enjoy all the things going on around <them class="br"></them>
+
+          Nestled safely on the rear of your bike (or in front depending the model) your child can look inquisitively all around. Can there be any better way of discovering Barcelona?<br>
+          <b>Requirements:</b><br>
+
+          <ul>
+            <li>ID or driver’s license (copy retained)</li>
+            <li>100€ deposit including the bike. By credit card or cash. Better in cash to avoid bank delay refunding.</li>
+            <li>General terms and conditions signed</li>
+          </ul>
+          <br>
+                    
+          <h3 style="color: #5cb245;">Choose your duration time:</h3><br>
+
+          <select name="electric-duration" id="electric-duration">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="2hours">2 hours - 16€</option>
+            <option value="4hours">4 hours - 24€</option>
+            <option value="8hours">8 hours - 35€</option>
+            <option value="24hours">24 hours - 50€</option>
+            <option value="2days">2 days - 90€</option>
+            <option value="3days">3 days - 126€</option>
+          </select><br><br><br>
+
+          <h3 style="color: #5cb245;">Type of Seats</h3><br>
+
+          Please, choose what type of seat would you <br>
+
+          <select name="type-seat" id="type-seat">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="front">Front Mini : 9 months till 3 years. Max 15kilos</option>
+            <option value="rear">Rear MAXI : 9 months till 6 years. Max 22 kilos</option>
+          </select><br>
+
+          <b>Choose your check-in time</b><br>
+          Select the best time for you to pick up yours<br><br>
+
+          <select name="electric-time" id="electric-time">
+            <option value="" disabled selected>Choose your option...</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            </select><br><br>
+            <h3 style="color: #5cb245;">Choose our Shop</h3><br>
+            Select the shop you want pick up the bikes and start your ride! <br>
+            <input type="radio" name="Shop1">Shop 1 | Happy Rental Bike : Calle Roger de Flor, 5. Tel: (+34) 933 28 58 34<br>
+            
+            <select name="urban-bike-qty" id="urban-bike-qty">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            
+            <button>Add to cart</button>
+        </div> 
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
