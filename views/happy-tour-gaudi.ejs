@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Bike Rental</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div>
+    <%- include('partials/header') %>
+
+    <main>
+      <div class="flex-container">
+        <div class="bike-images">
+          <img src="happy-tour-gaudi1.webp" alt="gaudi1"><br>
+          <img src="happy-tour-gaudi2.webp" alt="gaudi2"><br>
+          <img src="happy-tour-gaudi3.webp" alt="gaudi3"><br>
+          <img src="happy-tour-gaudi3.webp" alt="gaudi4"><br>
+        </div>
+        
+        <div class="flex-child">
+          <h1 style="color: #5cb245;">Happy Tour Gaudi & Modernista</h1><br><br>
+
+          <b>Happy Gaudi & Modernism Tour (3 hours)</b><br>
+          
+          Discover the Modernist side of Barcelona with one of our guides.<br>
+          Carefully organized to help you discover Gaudi’s Modernist works projected to Barcelona. We offer different itineraries and points of interest to make your stay as pleasant as possible. Barcelona is increasingly dedicated to welcoming <br>
+
+          <ul>
+            <li>Maximum group size is ten people so that everyone can make the most of their visit.</li>
+            <li>Each tour starts from and ends at our rental and sales point, at two steps of the Ciutadella Park (calle Roger de Flor, 5).</li>
+            <li>Choose your departure day and time according to our schedules: from 10:00 till 19:00</li>
+          </ul><br>
+          <b>We’re looking forward to seeing you.</b><br>
+          
+          <ul>
+            <li>Maximum <b>group size is ten people</b> so that everyone can make the most of their visit.</li>
+            <li>Each tour starts from and ends at our rental and sales point, at two steps of the <b>Ciutadella Park</b> (calle Roger de Flor, 5).</li>
+            <li>Choose your departure day and time according to our schedules: <b>from 10:00 till 19:00</b></li>
+          </ul>
+          <b>We’re looking forward to seeing you.</b><br>
+
+          <ul>      
+            <li>We start in our shop</li>
+            <li>Park of Ciutadella & Arc de triumf</li>
+            <li>Estació del Nort (north station)</li>
+            <li>Monumental</li>
+            <li>Sagrada Familia</li>
+            <li>Hospital Sant Pau</li>
+            <li>Casa Terrades (Casa Les Punxes)</li>
+            <li>Casa Milá</li>
+            <li>Casa Batlló</li>
+            <li>Casa Amatller</li>
+            <li>Palace of Catalan music</li>
+            <li>We’re going back to the store.</li>
+          </ul><br>
+
+          <h3 style="color: #5cb245;">Important</h3><br>
+          To complete and confirm the reservation, You pay <b>30%</b> in advance as a deposit <b>(minimum)</b>.<br>
+          Via transfer / Paypal /  Credit card<br>
+          <b>The balance will be paid on arrival before the departure of the tour at the counter, in cash (preferably) or by credit card.</b><br>
+
+          <h3 style="color: #5cb245;">How many adults over 12 will be joining the tour?</h3><br>
+
+          <select name="adults-happy-city-tour" id="adults-happy-city-tour">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1adult">1 60€</option>
+            <option value="2adults">2 90€</option>
+            <option value="3adults">3 120€</option>
+            <option value="4adults">4 150€</option>
+            <option value="5adults">5 180€</option>
+            <option value="6adults">6 210€</option>
+            <option value="7adults">7 235€</option>
+            <option value="8adults">8 260€</option>
+            <option value="9adults">9 290€</option>
+            <option value="10adults">10 300€</option>
+          </select><br>
+
+          <h3 style="color: #5cb245;">How many children between the ages of 6 and 12?</h3> <br>
+          <select name="adults-happy-city-tour" id="adults-happy-city-tour">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1kid">1 15€</option>
+            <option value="2kids">2 30€</option>
+            <option value="3kids">3 45€</option>
+            <option value="4kids">4 60€</option>
+          </select><br>
+
+          <h3 style="color: #5cb245;">How many children under 6?</h3><br>
+
+          Children under 6 years FREE<br>
+
+          <h3 style="color: #5cb245;">How many children between the ages of 6 and 12?</h3> <br>
+          <select name="adults-happy-city-tour" id="adults-happy-city-tour">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1baby">1</option>
+            <option value="2babies">2</option>
+            <option value="3babies">3</option>
+            <option value="4babies">4</option>
+          </select><br>
+
+          <h3 style="color: #5cb245;">Choose the departure time of your tour</h3><br>
+          We advise you to be at least 10 minutes early to prepare your bikes, while you and the guide are getting ready for the tour.<br><br>
+
+          <select name="happy-city-tour-time" id="happ-city-tour-time">
+            <option value="" disabled selected>Choose your option...</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            </select><br><br>
+            <h3 style="color: #5cb245;">Choose our Shop</h3><br>
+            Select the shop you want pick up the bikes and start your ride! <br>
+            <input type="radio" name="Shop1">Shop 1 | Happy Rental Bike : Calle Roger de Flor, 5. Tel: (+34) 933 28 58 34<br>
+                        
+            <button>Add to cart</button>
+        </div> 
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

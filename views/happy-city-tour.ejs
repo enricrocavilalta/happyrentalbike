@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kids Bike Rental</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div>
+    <%- include('partials/header') %>
+
+    <main>
+      <div class="flex-container">
+        <div class="bike-images">
+          <img src="happy-city-tour1.webp" alt="scooter1"><br>
+          <img src="happy-city-tour2.webp" alt="scooter2"><br>
+          <img src="happy-city-tour3.webp" alt="scooter3"><br>
+        </div>
+        
+        <div class="flex-child">
+          <h1 style="color: #5cb245;">Happy City Tour</h1><br><br>
+
+          <b>Private Tour – 4 hours tour on bike</b><br>
+           
+          Discover Barcelona through our bike tours guides.<br>
+
+          
+          The rides offered and called “tours” are carefully thought out and are your best option for exploring the different points of the city of Barcelona. In our rates, the guide is included!<br><br>
+          <ul>
+            <li>Maximum <b>group size is ten people</b> so that everyone can make the most of their visit.</li>
+            <li>Each tour starts from and ends at our rental and sales point, at two steps of the <b>Ciutadella Park</b> (calle Roger de Flor, 5).</li>
+            <li>Choose your departure day and time according to our schedules: <b>from 10:00 till 19:00</b></li>
+          </ul>
+          <b>We’re looking forward to seeing you.</b><br>
+
+          <ul>    
+            <li>Starting point at the shop</li>
+            <li>Ciutadella Park & Arc de triumf</li>
+            <li>Sagrada Familia</li>
+            <li>Monumental</li>
+            <li>Glories Encantes Market & Torre Agbar</li>
+            <li>Auditorium & national Theater</li>
+            <li>Carrer de la Marina</li>
+            <li>Villa Olímpica</li>
+            <li>Port Olímpic</li>
+            <li>The Barceloneta</li>
+            <li>Hotel W</li>
+            <li>Port Vell</li>
+            <li>Colón</li>
+            <li>Basilic of Santa Maria del Mar</li>
+            <li>Market of Santa Catarina</li>
+            <li>Cathedral</li>
+            <li>Palace of Catalan Music</li>
+            <li>Back to the shop</li>
+          </ul>
+
+          <h3 style="color: #5cb245;">Important</h3><br>
+          To complete and confirm the reservation, You pay <b>30%</b> in advance as a deposit <b>(minimum)</b>.<br>
+          Via transfer / Paypal /  Credit card<br>
+          <b>The balance will be paid on arrival before the departure of the tour at the counter, in cash (preferably) or by credit card.</b><br>
+
+          <h3 style="color: #5cb245;">How many adults over 12 will be joining the tour?</h3><br>
+
+          <select name="adults-happy-city-tour" id="adults-happy-city-tour">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1adult">1 80€</option>
+            <option value="2adults">2 120€</option>
+            <option value="3adults">3 145€</option>
+            <option value="4adults">4 200€</option>
+            <option value="5adults">5 245€</option>
+            <option value="6adults">6 285€</option>
+            <option value="7adults">7 320€</option>
+            <option value="8adults">8 350€</option>
+            <option value="9adults">9 360€</option>
+            <option value="10adults">10 400€</option>
+          </select><br>
+
+          <h3 style="color: #5cb245;">How many children between the ages of 6 and 12?</h3> <br>
+          <select name="adults-happy-city-tour" id="adults-happy-city-tour">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1kid">1 80€</option>
+            <option value="2kids">2 120€</option>
+            <option value="3kids">3 145€</option>
+            <option value="4kids">4 200€</option>
+          </select><br>
+
+          <h3 style="color: #5cb245;">How many children under 6?</h3><br>
+
+          Children under 6 years FREE<br>
+
+          <h3 style="color: #5cb245;">How many children between the ages of 6 and 12?</h3> <br>
+          <select name="adults-happy-city-tour" id="adults-happy-city-tour">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1kid">1 80€</option>
+            <option value="2kids">2 120€</option>
+            <option value="3kids">3 145€</option>
+            <option value="4kids">4 200€</option>
+          </select><br>
+
+          <h3 style="color: #5cb245;">Choose the departure time of your tour</h3><br>
+          We advise you to be at least 10 minutes early to prepare your bikes, while you and the guide are getting ready for the tour.<br><br>
+
+          <select name="happy-city-tour-time" id="happ-city-tour-time">
+            <option value="" disabled selected>Choose your option...</option>
+            <option value="10">10:00</option>
+            <option value="11">11:00</option>
+            <option value="12">12:00</option>
+            <option value="13">13:00</option>
+            <option value="14">14:00</option>
+            <option value="15">15:00</option>
+            <option value="16">16:00</option>
+            <option value="17">17:00</option>
+            </select><br><br>
+            <h3 style="color: #5cb245;">Choose our Shop</h3><br>
+            Select the shop you want pick up the bikes and start your ride! <br>
+            <input type="radio" name="Shop1">Shop 1 | Happy Rental Bike : Calle Roger de Flor, 5. Tel: (+34) 933 28 58 34<br>
+            
+            <select name="urban-bike-qty" id="urban-bike-qty">
+              <option value="1" selected>1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            
+            <button>Add to cart</button>
+        </div> 
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
