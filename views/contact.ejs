@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div>
+    <%- include('partials/header') %>
+
+    <main style="padding-left: 20px;">
+      <h1>Contact</h1>
+     
+      <h3 style="color: #5cb245;">Tell us how can we help you!</h3><br>
+
+      Do not hesitate to contact us for any question about bike rentals, bike tours or any other thing you may <br>
+
+      We will be Happy to answer you as soon as possible ! <br>
+
+      Happy Rental Bike Team 🙂 <br>
+
+      <h3 style="color: #5cb245;">Contact Me</h3><br>
+  
+      <form action="/send-email" method="POST" id="contact">
+        Name *<br>
+        <input type="text" name="contact_name" placeholder="Your Name" required><br><br>
+
+        Email *<br>
+        <input type="email" name="contact_email" placeholder="Your Email" required /><br><br>
+
+        Message *<br>
+        <textarea type="textarea" name="contact_message" placeholder="Your Message" required></textarea><br><br>
+
+        <button type="submit">Submit</button><br><br>
+      </form>
+
+      <img src="contact1.png" alt="contact1">
+      <img src="contact2.png" alt="contact2">
+      <a href="https://x.com/HappyRentalBike" style="padding:50px;">Tweets por @HappyRentalBike.</a>
+
+
+    </main>
+
+    <%- include('partials/footer') %>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

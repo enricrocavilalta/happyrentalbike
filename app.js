@@ -1,11 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const nodemailer = require('nodemailer');
 const bikesRouter = require('./routes/bikes'); // Importa las rutas de bikes
 const toursRouter = require('./routes/tours'); // Importa las rutas de tours
 const app = express();
 const path = require('path');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 // Middleware para parsear el cuerpo de las peticiones como JSON
 app.use(bodyParser.json());
+app.use(express.json());
 
 // Usamos la ruta de las bicicletas
 app.use('/bikes', bikesRouter);
@@ -16,6 +20,39 @@ app.use(express.static('public'));
 
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
+
+app.post('/send-email', (req, res) => {
+  const { name, email, message } = req.body;
+console.log(req.body);
+console.log(name);
+console.log(email);
+console.log(message);
+  // configure transport (use your actual email credentials or SMTP service)
+  const transporter = nodemailer.createTransport({
+    service: 'happyrentalbike',
+    auth: {
+      user: 'tienda@happyrentalbike.com',
+      pass: ''
+    }
+  });
+
+  const mailOptions = {
+    from: req.body.contact_email,
+    to: 'tienda@happyrentalbike.com',
+    subject: `New message from ${req.body.contact_name}`,
+    text: req.body.contact_message
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error sending email.');
+    } else {
+      console.log('Email sent: ' + info.response);
+      res.send('Message sent successfully!');
+    }
+  });
+});
 
 // Arrancar el servidor
 const PORT = 3000;

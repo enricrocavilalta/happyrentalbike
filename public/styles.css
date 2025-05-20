@@ -8,6 +8,16 @@ body {
     height: 100%;
     margin: 0;
   }
+
+  div{
+    padding-left: 20px;
+  }
+
+  main{
+    padding-left: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
   
   .container {
     text-align: center;
@@ -122,7 +132,7 @@ body {
   }
 
   img{
-    border-radius: 10px;
+    border-radius: 10px !important;
   }
   
   .bike-footer {
@@ -334,6 +344,75 @@ body {
 .bike-images{
   text-align: right;
   padding: 20px;
+}
+
+.flex-container {
+  display: flex;
+  gap: 1rem; /* Optional spacing between columns */
+}
+
+.column {
+  flex: 1; /* Each column gets equal width */
+  padding: 1rem;
+  text-align: center;
+}
+
+.button-city{
+  background:#FDC600;
+}
+
+.button-city:hover{
+  background:#BC8F00;
+}
+
+.button-gaudi{
+  background:#009EE0;
+}
+
+.button-gaudi:hover{
+  background:#00739B;
+}
+
+.button-beach{
+  background:#E5342C;
+}
+
+.button-beach:hover{
+  background:#720000;
+}
+
+
+
+.button-carta{
+  background:#790C68;
+}
+
+.button-carta:hover{
+  background:#4f0046;
+}
+
+.img-wrapper {
+  border-radius: 10px;
+  overflow: hidden;
+  display: inline-block; /* or block */
+}
+.img-wrapper img {
+  display: block;
+  width: 100%; /* optional */
+  height: auto;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+
+.image-grid img {
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
   
