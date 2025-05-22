@@ -10,6 +10,39 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware para parsear el cuerpo de las peticiones como JSON
 app.use(bodyParser.json());
 app.use(express.json());
+//pp.use(session({ ... }));
+const session = require('express-session');
+const bcrypt = require('bcrypt');
+
+const mysql = require('mysql2/promise'); // For database connections
+
+app.use(session({
+  secret: 'your-secret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // true if using HTTPS
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 // 1 day
+  }
+}));
+
+const dbOptions = {
+  host: 'localhost',
+  user: 'root',
+  password: 'fghjFGHJ85',
+  database: 'happyrental'
+};
+
+app.get('/profile', authMiddleware, async (req, res) => {
+  const conn = await mysql.createConnection(dbOptions);
+  const [rows] = await conn.execute('SELECT id, username FROM users WHERE id = ?', [req.session.userId]);
+  conn.end();
+
+  if (!rows.length) return res.status(404).send({ error: 'User not found' });
+
+  res.send(rows[0]);
+});
 
 // Usamos la ruta de las bicicletas
 app.use('/bikes', bikesRouter);
@@ -82,5 +115,79 @@ app.get('/:page', (req, res) => {
     }
   });
 });
+
+const MySQLStore = require('express-mysql-session')(session);
+
+// Configure MySQL session store
+const sessionStore = new MySQLStore({
+  host: 'localhost',
+  user: 'root', // Usuario de MySQL
+  password: 'fghjFGHJ85', // Contraseña de MySQL
+  database: 'happyrental' // Nombre de la base de datos
+});
+
+// Plug session middleware into Express
+app.use(session({
+  secret: 'yourSecretKey', // Use a strong, random string in production
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+// Register
+app.post('/register', async (req, res) => {
+  try {
+    const username = req.body.username;
+    const password  = req.body.password;
+    const conn = await mysql.createConnection(dbOptions);
+    
+    const [rows] = await conn.execute('SELECT * FROM users WHERE username = ?', [username]);
+    if (rows.length) return res.status(400).send({ error: 'Username taken' });
+
+    const hashed = await bcrypt.hash(password, 10);
+    await conn.execute('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashed]);
+    conn.end();
+
+    res.send({ message: 'Registered' });
+  } catch (err) {
+    console.error('Error in /register:', err);
+    res.status(500).send({ error: 'Internal server error' });
+  }
+});
+
+// Login
+app.post('/login', async (req, res) => {
+  //const { username, password } = req.body;
+    const username = req.body.username;
+    const password  = req.body.password;
+
+  const conn = await mysql.createConnection(dbOptions);
+
+  const [rows] = await conn.execute('SELECT * FROM users WHERE username = ?', [username]);
+  conn.end();
+  if (!rows.length) return res.status(400).send({ error: 'Invalid credentials' });
+
+  const user = rows[0];
+  const match = await bcrypt.compare(password, user.password);
+  if (!match) return res.status(400).send({ error: 'Invalid credentials' });
+
+  req.session.userId = user.id;
+  res.send({ message: 'Logged in' });
+});
+
+// Logout
+app.post('/logout', (req, res) => {
+  req.session.destroy(() => res.send({ message: 'Logged out' }));
+});
+
+function authMiddleware(req, res, next) {
+  if (!req.session.userId) return res.status(401).send({ error: 'Unauthorized' });
+  next();
+}
+
+
+
+
 
 

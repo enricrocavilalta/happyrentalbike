@@ -1,0 +1,25 @@
+<h1>Products</h1>
+<ul>
+  <% products.forEach(product => { %>
+    <li>
+      <%= product.name %> - $<%= product.price %>
+      <form method="POST" action="/add-to-cart" style="display:inline">
+        <input type="hidden" name="productId" value="<%= product.id %>">
+        <button type="submit">Add to Cart</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>
+
+<h2>Your Cart</h2>
+<ul>
+  <% cart.forEach(item => { %>
+    <li>
+      <%= item.name %> × <%= item.qty %> = $<%= (item.qty * item.price).toFixed(2) %>
+      <form method="POST" action="/remove-from-cart" style="display:inline">
+        <input type="hidden" name="productId" value="<%= item.id %>">
+        <button type="submit">Remove</button>
+      </form>
+    </li>
+  <% }) %>
+</ul>

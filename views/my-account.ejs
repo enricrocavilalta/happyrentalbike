@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div>
+    <%- include('partials/header') %>
+
+    <main style="padding-left: 20px;">
+      <h1>My Account</h1>
+     
+      <h3 style="color: #5cb245;">Login</h3><br>
+
+      <form action="" method="POST" id="contact">
+        username or email address *<br>
+        <input type="text" name="username" placeholder="Your username" required><br><br>
+
+        Password *<br>
+        <input type="password" name="password" required /><br><br>
+
+        <input type="checkbox" name="subscribe" /> Remember me <br><br>
+        <button type="submit">Log in</button><br><br>
+      </form>
+
+      <a href="#">Lost your password?</a>
+      
+    </main>
+
+    <%- include('partials/footer') %>
+    
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

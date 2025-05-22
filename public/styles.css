@@ -13,12 +13,21 @@ body {
     padding-left: 20px;
   }
 
+  header{
+    margin: 10px;
+    padding: 20px;
+  }
+
   main{
-    padding-left: 20px;
-    margin-bottom: 20px;
-    padding-bottom: 20px;
+    margin: 10px;
+    padding: 20px;
   }
   
+  footer{
+    margin: 10px;
+    padding: 20px;
+  }
+
   .container {
     text-align: center;
     background-color: white;
@@ -212,8 +221,6 @@ body {
   main {
     background:#101010;
     color:white;
-    margin-top: 0;
-    padding-top: 0;
     border-radius: 10px;
   }
 
