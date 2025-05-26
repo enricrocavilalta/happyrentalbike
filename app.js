@@ -138,6 +138,7 @@ app.use(session({
 // Register
 app.post('/register', async (req, res) => {
   try {
+    console.log(req.body);
     const username = req.body.username;
     const password  = req.body.password;
     const conn = await mysql.createConnection(dbOptions);
@@ -185,6 +186,63 @@ function authMiddleware(req, res, next) {
   if (!req.session.userId) return res.status(401).send({ error: 'Unauthorized' });
   next();
 }
+
+app.post('/cart', async (req, res) => {
+  const userId = req.session.userId;
+  const bike_id = req.body.bike_id;
+  const quantity = req.body.quantity ?? 1;
+  const price = req.body.price;
+
+  console.log('Session userId:', req.session.userId);
+  
+  if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+  if (!bike_id || price === undefined) {
+    return res.status(400).json({ error: 'Missing bikeId or price' });
+  }
+ console.log({
+  userId: req.session.userId,
+  bike_id: req.body.bike_id,
+  quantity: req.body.quantity,
+  price: req.body.price
+  });
+
+  const conn = await mysql.createConnection(dbOptions);
+  await conn.execute(
+    `INSERT INTO cart (user_id, bike_id, quantity, price)
+     VALUES (?, ?, ?, ?)
+     ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)`,
+    [userId, bike_id, quantity, price]
+  );
+  await conn.end();
+
+  res.json({ message: 'Item added to cart' });
+});
+
+
+app.get('/cart', async (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+
+  const conn = await mysql.createConnection(dbOptions);
+  const [items] = await conn.execute(
+    `SELECT * FROM cart WHERE user_id = ?`,
+    [userId]
+  );
+  await conn.end();
+
+  // Optionally parse the JSON field
+  const parsedItems = items.map(item => ({
+    ...item,
+    options: JSON.parse(item.options)
+  }));
+
+  res.json(parsedItems);
+});
+
+app.get('/session-test', (req, res) => {
+  res.json({ session: req.session });
+});
+
 
 
 

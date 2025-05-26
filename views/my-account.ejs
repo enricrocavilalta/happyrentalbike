@@ -15,17 +15,17 @@
      
       <h3 style="color: #5cb245;">Login</h3><br>
 
-      <form action="" method="POST" id="contact">
+      <form action="/register" method="POST" id="registerForm">
         username or email address *<br>
         <input type="text" name="username" placeholder="Your username" required><br><br>
 
         Password *<br>
-        <input type="password" name="password" required /><br><br>
+        <input type="password" name="password" placeholder="Your username" required /><br><br>
 
         <input type="checkbox" name="subscribe" /> Remember me <br><br>
         <button type="submit">Log in</button><br><br>
       </form>
-
+      <div id="message"></div>
       <a href="#">Lost your password?</a>
       
     </main>
@@ -33,6 +33,28 @@
     <%- include('partials/footer') %>
     
   </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = {
+        username: formData.get('username'),
+        password: formData.get('password')
+      };
+
+      const response = await fetch('http://localhost:3000/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+        credentials: 'include' // important for session cookies
+      });
+
+      const result = await response.json();
+      document.getElementById('message').textContent = result.message || result.error;
+    });
+  </script>
 
   <script src="script.js"></script>
 </body>
